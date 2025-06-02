@@ -6,6 +6,7 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 
 /**
@@ -80,7 +81,7 @@ public static void main(String[] args) throws IOException, TemplateException {
         Template template = configuration.getTemplate(templateName);
 
         // 生成
-        Writer out = new OutputStreamWriter(new FileOutputStream(outputPath), "utf-8");
+        Writer out = new OutputStreamWriter(Files.newOutputStream(Paths.get(outputPath)), "utf-8");
         template.process(model, out);
 
         // 生成文件后别忘了关闭哦
