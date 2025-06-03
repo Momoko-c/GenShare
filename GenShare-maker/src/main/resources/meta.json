@@ -5,9 +5,11 @@
   "version": "1.0",
   "author": "momoko",
   "createTime": "2025-06-02",
+
   "fileConfig": {
-    "inputRootPath": "/Code/java/GenShare/GenShare-demo/acm-template-pro",
-    "outputRootPath": "generated",
+    "inputRootPath": ".source/acm-template-pro",
+    "outputRootPath": "generated-code",
+    "sourceRootPath": "/Code/java/GenShare/GenShare-demo/acm-template-pro",
     "type": "dir",
     "files": [
       {
@@ -54,5 +56,9 @@
         "abbr": "o"
       }
     ]
+  },
+  "gitConfig": {
+    "enableGit": true,
+    "enableGitignore": true
   }
 }

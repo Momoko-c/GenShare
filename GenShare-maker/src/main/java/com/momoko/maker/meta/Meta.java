@@ -20,12 +20,15 @@ public class Meta {
     private String createTime;
     private FileConfig fileConfig;
     private ModelConfig modelConfig;
+    // 是否启用git
+    private GitConfig gitConfig;
 
     @NoArgsConstructor
     @Data
     public static class FileConfig {
         private String inputRootPath;
         private String outputRootPath;
+        private String sourceRootPath;
         private String type;
         private List<FileInfo> files;
 
@@ -53,6 +56,13 @@ public class Meta {
             private Object defaultValue;
             private String abbr;
         }
+    }
+
+    @NoArgsConstructor
+    @Data
+    public static class GitConfig {
+        private boolean enableGit;
+        private boolean enableGitignore;
     }
 }
 

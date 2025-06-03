@@ -1,9 +1,14 @@
 # My Custom
 
-.idea
-target
-GenShare.iml
+# IDEA project files
+.idea/
+*.iml
 
+# Maven build output
+target/
+
+# Generated code/output
+GenShare-maker/generated/
 
 
 ### Java template
