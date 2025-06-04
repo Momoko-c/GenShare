@@ -3,7 +3,6 @@ package com.momoko.maker.generator.main;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.resource.ClassPathResource;
 import cn.hutool.core.util.StrUtil;
-import com.momoko.maker.generator.GitGenerator;
 import com.momoko.maker.generator.JarGenerator;
 import com.momoko.maker.generator.ScriptGenerator;
 import com.momoko.maker.generator.file.DynamicFileGenerator;
@@ -36,11 +35,6 @@ public class GenerateTemplate {
 
         // Fifth Step: 封装脚本
         String shellOutputFilePath = buildScript(outputPath, jarPath);
-
-        // Sixth Step: 初始化 Git 仓库（如果启用）
-        if (meta.getGitConfig() != null) {
-            GitGenerator.doGenerate(outputPath, meta.getGitConfig());
-        }
 
         // Last Step: 生成精简版的程序（产物包）
         buildDist(outputPath, sourceCopyDestPath, jarPath, shellOutputFilePath);
@@ -120,6 +114,11 @@ public class GenerateTemplate {
         outputFilePath = outputBaseJavaPackagePath + "/model/DataModel.java";
         DynamicFileGenerator.doGenerate(inputFilePath , outputFilePath, meta);
 
+        // generator.MainGenerator
+        inputFilePath = inputResourcePath + File.separator + "templates/java/generator/MainGenerator.java.ftl";
+        outputFilePath = outputBaseJavaPackagePath + "/generator/MainGenerator.java";
+        DynamicFileGenerator.doGenerate(inputFilePath , outputFilePath, meta);
+
         // cli.command.ConfigCommand
         inputFilePath = inputResourcePath + File.separator + "templates/java/cli/command/ConfigCommand.java.ftl";
         outputFilePath = outputBaseJavaPackagePath + "/cli/command/ConfigCommand.java";
@@ -151,10 +150,7 @@ public class GenerateTemplate {
         outputFilePath = outputBaseJavaPackagePath + "/generator/DynamicGenerator.java";
         DynamicFileGenerator.doGenerate(inputFilePath , outputFilePath, meta);
 
-        // generator.MainGenerator
-        inputFilePath = inputResourcePath + File.separator + "templates/java/generator/MainGenerator.java.ftl";
-        outputFilePath = outputBaseJavaPackagePath + "/generator/MainGenerator.java";
-        DynamicFileGenerator.doGenerate(inputFilePath , outputFilePath, meta);
+
 
         // generator.StaticGenerator
         inputFilePath = inputResourcePath + File.separator + "templates/java/generator/StaticGenerator.java.ftl";
